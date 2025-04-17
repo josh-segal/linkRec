@@ -1,0 +1,6 @@
+.DS_Store
+.vscode/
+MINDsmall_dev/
+MINDsmall_train/
+desktop_dataset/
+news-recommendation-content-based.ipynb
