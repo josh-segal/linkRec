@@ -4,3 +4,7 @@ MINDsmall_dev/
 MINDsmall_train/
 desktop_dataset/
 news-recommendation-content-based.ipynb
+model_pipelines.py
+py_to_ipynb.py
+plan.md
+*.png
