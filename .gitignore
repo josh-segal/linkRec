@@ -8,3 +8,5 @@ model_pipelines.py
 py_to_ipynb.py
 plan.md
 *.png
+venv/
+__pycache__/
