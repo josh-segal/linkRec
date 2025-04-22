@@ -16,3 +16,6 @@ Web Frontend ←→ API Layer ←→ Model Server
 User Interface  Logging     Model Updates
      ↓             ↓            ↓
 Visualizations  Storage    Training Loop
+
+cluster categories for better generalization
+
