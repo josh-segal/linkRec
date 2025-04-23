@@ -41,7 +41,7 @@ MODELS_DIR.mkdir(exist_ok=True)
 
 logger.info(f"Initializing data handler with path: {DATA_PATH}")
 data_handler = DataHandler(DATA_PATH)
-data_handler.load_data(sample_fraction=0.01)  # Using small sample for faster loading
+data_handler.load_data(sample_fraction=0.05)  # Using small sample for faster loading
 
 context_dim = data_handler.get_feature_dim()
 n_arms = 5

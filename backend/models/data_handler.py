@@ -134,6 +134,8 @@ class DataHandler:
         ], axis=1).set_index('NewsId')
         
         interactions = []
+        total_rows = len(self.behaviors_df)
+        valid_rows = 0
         
         logger.info("Processing behavior data...")
         for _, row in self.behaviors_df.iterrows():
@@ -158,6 +160,7 @@ class DataHandler:
                     rewards.append(int(click))
             
             if slate:  # Only include if there are valid articles
+                valid_rows += 1
                 interactions.append({
                     'user_id': row['UserID'],
                     'context': context,
@@ -165,6 +168,10 @@ class DataHandler:
                     'rewards': rewards,
                     'news_features': news_features.loc[slate].to_dict('records')
                 })
+        
+        logger.info(f"Total behavior rows: {total_rows}")
+        logger.info(f"Valid interactions created: {valid_rows}")
+        logger.info(f"Percentage of valid interactions: {(valid_rows/total_rows)*100:.2f}%")
         
         return interactions, news_features
 
@@ -202,7 +209,15 @@ class DataHandler:
         """
         Sample a random context from the dataset
         """
-        interaction = np.random.choice(self.processed_data)
+        # Get a random index instead of using np.random.choice directly on the list
+        random_idx = np.random.randint(0, len(self.processed_data))
+        interaction = self.processed_data[random_idx]
+        
+        # Log more details about the selected interaction
+        logger.info(f"Selected interaction {random_idx} of {len(self.processed_data)}")
+        logger.info(f"Context: {interaction['context']}")
+        logger.info(f"Number of articles in slate: {len(interaction['news_features'])}")
+        
         return {
             'context': interaction['context'],
             'articles': interaction['news_features'],
